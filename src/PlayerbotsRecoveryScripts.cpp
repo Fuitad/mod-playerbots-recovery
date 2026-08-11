@@ -8,6 +8,7 @@
 #include <ctime>
 #include <limits>
 #include <memory>
+#include <string>
 #include <type_traits>
 
 #include "Bot/Engine/AiObjectContext.h"
@@ -80,7 +81,7 @@ void ObserveProgress(PlayerbotAI* botAI, PlayerbotRecoveryState& state, std::uin
     auto setObjective = [bot, &observation](PlayerbotLoopObjectiveKind kind, std::uint64_t key, std::string_view title,
                                             WorldPosition const& position)
     {
-        observation.objective = {.kind = kind, .key = key, .title = title};
+        observation.objective = {.kind = kind, .key = key, .title = std::string(title)};
         if (position.GetMapId() != bot->GetMapId())
         {
             observation.distanceToObjective = std::numeric_limits<float>::max();

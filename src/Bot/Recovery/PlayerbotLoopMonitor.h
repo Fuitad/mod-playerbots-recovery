@@ -10,6 +10,7 @@
 #include <array>
 #include <cstddef>
 #include <mutex>
+#include <string>
 #include <string_view>
 
 #include "Define.h"
@@ -41,7 +42,7 @@ struct PlayerbotLoopObjective
 {
     PlayerbotLoopObjectiveKind kind = PlayerbotLoopObjectiveKind::None;
     uint64 key = 0;
-    std::string_view title;
+    std::string title;
 };
 
 struct PlayerbotLoopProgressObservation

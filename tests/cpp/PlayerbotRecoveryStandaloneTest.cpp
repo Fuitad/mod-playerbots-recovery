@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include <string>
 #include <string_view>
 
 #include "Bot/Recovery/PlayerbotGrindDestinationPolicy.h"
@@ -43,6 +44,12 @@ bool HasClassifier(PlayerbotLoopAnomalySnapshot const& snapshot, PlayerbotLoopCl
 
 int main()
 {
+    std::string objectiveTitle = "A Durable Quest Title";
+    PlayerbotLoopObjective objective = {PlayerbotLoopObjectiveKind::Quest, 101, objectiveTitle};
+    objectiveTitle.assign("Caller storage was reused");
+    Require(objective.title == "A Durable Quest Title",
+            "loop progress observations did not own their deferred objective title");
+
     PlayerbotLoopMonitor monitor;
     monitor.ObserveProgress(Observation(0, 10.0f, 100.0f));
     monitor.ObserveProgress(Observation(45 * SECOND_MS, 10.2f, 99.8f));
