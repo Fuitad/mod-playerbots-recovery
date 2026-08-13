@@ -75,7 +75,9 @@ void PlayerbotLoopMonitor::RecordActionAttempt(std::string_view actionName, bool
 {
     std::lock_guard<std::mutex> lock(mutex);
     ActionSample& sample = actions.values[actions.next];
-    sample = {.timestampMs = timestampMs, .success = success};
+    sample = ActionSample{};
+    sample.timestampMs = timestampMs;
+    sample.success = success;
     if (movement.count)
     {
         MovementSample const& latestMovement =
