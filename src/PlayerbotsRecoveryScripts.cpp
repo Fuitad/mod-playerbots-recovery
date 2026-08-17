@@ -136,7 +136,7 @@ public:
 
     bool IsActive() override
     {
-        if (botAI->HasActivePlayerMaster() || !botAI->AllowActivity(ALL_ACTIVITY))
+        if (IsRealPlayer(botAI->GetMaster()) || !botAI->AllowActivity(ALL_ACTIVITY))
             return false;
 
         WorldPosition botPosition(bot);
@@ -176,7 +176,7 @@ public:
 
     bool IsActive() override
     {
-        if (!bot->IsInCombat() || !botAI->HasRealPlayerMaster() || !botAI->AllowActivity(ALL_ACTIVITY))
+        if (!bot->IsInCombat() || !botAI->HasGameClientMaster() || !botAI->AllowActivity(ALL_ACTIVITY))
             return false;
 
         Player* const groupLeader = botAI->GetGroupLeader();

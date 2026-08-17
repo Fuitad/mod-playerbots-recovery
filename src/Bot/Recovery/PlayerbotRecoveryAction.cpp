@@ -59,7 +59,7 @@ bool PlayerbotRecoveryAction::Execute([[maybe_unused]] Event event)
 
 bool PlayerbotRecoveryAction::IsAutonomousBot() const
 {
-    return sRandomPlayerbotMgr.IsRandomBot(bot) && !botAI->HasActivePlayerMaster() &&
+    return sRandomPlayerbotMgr.IsRandomBot(bot) && !IsRealPlayer(botAI->GetMaster()) &&
            botAI->AllowActivity(ALL_ACTIVITY);
 }
 
